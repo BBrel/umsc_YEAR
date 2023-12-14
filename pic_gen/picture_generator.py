@@ -1,3 +1,5 @@
+import asyncio
+
 from PIL import Image, ImageDraw, ImageFont
 import config
 import os
@@ -82,4 +84,5 @@ async def gen_pic(vk_id, pic, dig):
     )
 
     await config.bot.api.messages.send(peer_id=vk_id, random_id=0, attachment=photo)
+    await asyncio.sleep(1)
     os.remove(str(vk_id) + pic + '.png')
