@@ -11,8 +11,9 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
 
         try:
             uploader = PhotoMessageUploader(api=ctx)
+            grade = await get_grade(pic, dig)
+            path = f'pics/{pic}{grade}.png'
             param = str(dig)
-            path = 'pics/' + pic + await get_category(pic, dig) + '.png'
 
             with Image.open(path) as image:
                 image.load()
@@ -28,12 +29,12 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
                 font="CoFoGothicBold.ttf",
                 size=169
             )
-
+            # определение размера подложки
             param_width = draw.textlength(
                 text=param,
                 font=font
             ) + 70
-
+            # создание подложки
             draw.rounded_rectangle(
                 xy=(pic_width // 2 - param_width // 2, block_y,
                     pic_width // 2 + param_width // 2, block_y + 179),
@@ -42,7 +43,7 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
                 outline='black',
                 width=2
             )
-
+            # наложение параметра
             draw.text(
                 xy=(pic_width // 2, pic_height // 2 - param_y),
                 text=param,
@@ -73,32 +74,32 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
             await gen_pic(vk_id, pic, dig, ctx, try_num+1)
 
 
-async def get_category(pic, dig):
+async def get_grade(pic, dig):
     if pic == 'hw':
-        if dig > 100:
+        if dig > 30:
             return '_good'
-        elif 40 <= dig >= 60:
+        elif 10 <= dig <= 30:
             return '_med'
         else:
             return '_bad'
     elif pic == 'ball':
-        if dig > 61:
+        if dig > 70:
             return '_good'
-        elif 40 <= dig >= 60:
+        elif 41 <= dig <= 70:
             return '_med'
         else:
             return '_bad'
     elif pic == 'rec':
-        if dig > 100:
+        if dig > 2400:
             return '_good'
-        elif 40 <= dig >= 60:
+        elif 260 <= dig <= 2400:
             return '_med'
         else:
             return '_bad'
     elif pic == 'live':
-        if dig > 100:
+        if dig > 500:
             return '_good'
-        elif 40 <= dig >= 60:
+        elif 60 <= dig <= 500:
             return '_med'
         else:
             return '_bad'

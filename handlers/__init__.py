@@ -1,5 +1,5 @@
-from . import main_handl, vk_handl, email_handl
+from . import main_handl, by_vk, by_email
 
-labelers = [main_handl.config.labeler, vk_handl.config.labeler, email_handl.config.labeler]
+labelers = [main_handl.config.labeler, by_vk.config.labeler, by_email.config.labeler]
 
 __all__ = ['labelers']

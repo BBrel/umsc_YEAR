@@ -6,8 +6,8 @@ from vkbottle.bot import Message
 
 async def pics_loop(message: Message, request):
     await message.answer(
-                    attachment='photo249282206_457258139_9f437581d2541b000c'
-                )
+        attachment='photo249282206_457258139_9f437581d2541b000c'
+    )
 
     for par in request['data']:
         await asyncio.sleep(2)
