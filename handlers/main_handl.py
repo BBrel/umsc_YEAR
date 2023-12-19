@@ -19,7 +19,6 @@ async def get_by_email(message: Message):
         message='Выполняю поиск по твоей почте!'
     )
     await by_email.start(message)
-    await config.state_dispenser.delete(message.peer_id)
 
 
 @config.labeler.message(text='2023')

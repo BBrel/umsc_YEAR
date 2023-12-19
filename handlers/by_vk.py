@@ -10,7 +10,7 @@ from utilits import aio_request
 async def start(message: Message, try_num=1):
     if try_num <= 3:
         try:
-            request = await aio_request(config.URL, {'user_vk': message.from_id})
+            request = await aio_request(config.URL, {'user': 'https://vk.com/id'+str(message.from_id)})
 
             if request['result']:
                 await pics_loop(message, request['result'][0])

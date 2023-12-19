@@ -10,7 +10,7 @@ from utilits import aio_request
 async def start(message: Message, try_num=1):
     if try_num <= 3:
         try:
-            request = await aio_request(config.URL, {'user_email': message.text})
+            request = await aio_request(config.URL, {'user': message.text})
 
             if request['result']:
                 await pics_loop(message, request['result'][0])
@@ -20,7 +20,7 @@ async def start(message: Message, try_num=1):
                     message='Данная почта не найдена\n'
                             'Обратись к своему ПМ или куратору, чтобы тебе помогли'
                 )
-                await config.state_dispenser.set(message.peer_id, State.EMAIL)
+                await config.state_dispenser.delete(message.peer_id)
 
         except Exception as exp:
             print(f'Случилась ошибка {exp}')

@@ -10,7 +10,7 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
     if try_num <= 2:
 
         try:
-            uploader = PhotoMessageUploader(api=ctx)
+            uploader = PhotoMessageUploader(config.bot.api)
             grade = await get_grade(pic, dig)
             path = f'pics/{pic}{grade}.png'
             param = str(dig)
