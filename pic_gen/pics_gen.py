@@ -12,7 +12,7 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
         try:
             uploader = PhotoMessageUploader(config.bot.api)
             grade = await get_grade(pic, dig)
-            path = f'pics/{pic}{grade}.png'
+            path = f'bot_files/pics/{pic}{grade}.png'
             param = str(dig)
 
             with Image.open(path) as image:
@@ -26,7 +26,7 @@ async def gen_pic(vk_id, pic, dig, ctx, try_num=1):
             param_y = 80 if pic in ('hw', 'live') else 60
 
             font = ImageFont.truetype(
-                font="CoFoGothicBold.ttf",
+                font="bot_files/CoFoGothicBold.ttf",
                 size=169
             )
             # определение размера подложки

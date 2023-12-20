@@ -3,7 +3,6 @@ from vkbottle.bot import Message
 import config
 import asyncio
 from pic_gen import pics_loop
-from state import State
 from utilits import aio_request
 
 
